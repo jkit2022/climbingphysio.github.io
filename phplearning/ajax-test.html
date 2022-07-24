@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function ajaxcall(){
+            //get form data
+            let data = new FormData();
+            data.append("name", document.getElementById("name").value);
+            data.append("email", document.getElementById("email").value);
+
+            //Ajax calls
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", "dummy.php");
+            xhr.onload = function (){
+                console.log(this.response);
+            };
+            xhr.send(data);
+
+            //prevent form submit (reload page)
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return ajaxcall()">
+        <input tye="text" id="name" value="john"/>
+        <input type="text" id="email" value="john@coo.com"/>
+        <input type="submit" value="Go"/>
+    </form>
+</body>
+</html>
